@@ -5,14 +5,14 @@ import { Task } from '../models/task.model';
   selector: 'app-task',
   template: `
     <div class="list-item {{ task?.state }}">
-      <label class="checkbox">
+      <label class="checkbox" for="pinTask-{{ task?.id }}">
         <input
           type="checkbox"
           [defaultChecked]="task?.state === 'TASK_ARCHIVED'"
           disabled
           name="checked"
         />
-        <span class="checkbox-custom" (click)="onArchive(task.id)" [attr.aria-label]="'archiveTask-{{ task?.id }}'"></span>
+        <span class="checkbox-custom" (click)="onArchive(task.id)" [attr.aria-label]="'archiveTask-' + task?.id"></span>
       </label>
       <div class="title">
         <input
@@ -24,7 +24,7 @@ import { Task } from '../models/task.model';
       </div>
       <div class="actions">
         <a *ngIf="task?.state !== 'TASK_ARCHIVED'" (click)="onPin(task.id)">
-          <span class="icon-star" [attr.aria-label]="'pinTask-{{ task?.id }}'"></span>
+          <span class="icon-star" [attr.aria-label]="'pinTask-' + task?.id"></span>
         </a>
       </div>
     </div>
